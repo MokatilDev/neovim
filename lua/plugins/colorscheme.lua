@@ -1,17 +1,37 @@
 return {
-  -- catppuccin
+  { "LazyVim/LazyVim", opts = {
+    colorscheme = "catppuccin",
+  } },
+
   {
     "catppuccin/nvim",
-    lazy = false,
-    priority = 1000,
     name = "catppuccin",
-  },
-  {
-    "akinsho/bufferline.nvim",
-    version = "*",
-    dependencies = "nvim-tree/nvim-web-devicons",
+    priority = 1000,
+    dependencies = {
+      "akinsho/bufferline.nvim",
+    },
     config = function()
-      require("bufferline").setup({})
+      require("catppuccin").setup({
+        flavour = "mocha",
+        integrations = {
+          bufferline = true,
+          treesitter = true,
+          native_lsp = {
+            enabled = true,
+            underlines = {
+              errors = { "underdashed" },
+              hints = { "underdashed" },
+              warnings = { "underdashed" },
+              information = { "underdashed" },
+            },
+          },
+          float = true,
+          gitsigns = true,
+          telescope = true,
+          nvimtree = true,
+          which_key = true,
+        },
+      })
     end,
   },
 }

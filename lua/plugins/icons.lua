@@ -1,17 +1,13 @@
 return {
   {
     "DaikyXendo/nvim-material-icon",
+    lazy = true,
+    config = function()
+      local icons = require("nvim-material-icon")
+      icons.setup({
+        -- you can override or add custom icons here
+        -- example: custom = { lua = { icon = "", name = "Lua" } },
+      })
+    end,
   },
-  require("nvim-web-devicons").setup({
-    override = {
-      zsh = {
-        icon = "",
-        color = "#428850",
-        cterm_color = "65",
-        name = "Zsh",
-      },
-    },
-    color_icons = true,
-    default = true,
-  }),
 }
