@@ -12,7 +12,7 @@ return {
     },
     config = function()
       require("catppuccin").setup({
-        flavour = "mocha",
+        --  flavour = "mocha",
         integrations = {
           bufferline = true,
           treesitter = true,
