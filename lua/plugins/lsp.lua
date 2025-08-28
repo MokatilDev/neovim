@@ -2,7 +2,11 @@ return {
   {
     "mason-org/mason-lspconfig.nvim",
     opts = {
-      ensure_installed = { "sqls", "gopls", "sqlls" },
+      ensure_installed = {
+        "sqls",
+        "gopls",
+        "sqlls",
+      },
     },
     dependencies = {
       { "mason-org/mason.nvim", opts = {} },

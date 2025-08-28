@@ -11,5 +11,12 @@ vim.opt.autoindent = true
 vim.g.dbs = {
   prod = "postgres://postgres:postgres@localhost:5432/postgres",
 }
-
 vim.lsp.enable("postgres_lsp")
+vim.filetype.add({
+  filename = {
+    ["docker-compose.yml"] = "yaml.docker-compose",
+    ["docker-compose.yaml"] = "yaml.docker-compose",
+    ["compose.yml"] = "yaml.docker-compose",
+    ["compose.yaml"] = "yaml.docker-compose",
+  },
+})
