@@ -1,78 +1,92 @@
 require("nvchad.configs.lspconfig").defaults()
 
 local servers = {
-    "lua_ls",
-    "biome",
-    "sqlls",
-    "sqls",
-    "html",
-    "texlab",
-    "emmet_ls",
-    "tailwindcss",
-    "gopls",
-    "clangd",
-    "ts_ls",
-    "prismals",
+	"lua_ls",
+	"biome",
+	"sqlls",
+	"sqls",
+	"html",
+	"texlab",
+	"emmet_ls",
+	"tailwindcss",
+	"gopls",
+	"clangd",
+	"ts_ls",
+	"prismals",
+	"mdx_analyzer",
+	"pylsp",
 }
 
 vim.lsp.enable(servers)
 
+vim.filetype.add({
+	extension = {
+		mdx = "markdown",
+	},
+})
 
 vim.lsp.config.prismals = {
-    filetypes = {
-        "prisma",
-    },
+	filetypes = {
+		"prisma",
+	},
+}
+
+vim.lsp.config.mdx_analyzer = {
+	filetypes = {
+		"md",
+		"mdx",
+	},
 }
 
 vim.lsp.config.emmet_ls = {
-    filetypes = {
-        "css",
-        "html",
-        "javascript",
-        "typescript",
-        "javascriptreact",
-        "less",
-        "sass",
-        "scss",
-        "typescriptreact",
-    },
-    init_options = {
-        html = {
-            options = {
-                ["bem.enabled"] = true,
-                ["output.attributeQuotes"] = "double",
-            },
-        },
-    },
+	filetypes = {
+		"css",
+		"html",
+		"javascript",
+		"typescript",
+		"javascriptreact",
+		"less",
+		"sass",
+		"scss",
+		"typescriptreact",
+	},
+	init_options = {
+		html = {
+			options = {
+				["bem.enabled"] = true,
+				["output.attributeQuotes"] = "double",
+			},
+		},
+	},
 }
 
 vim.lsp.config.tailwindcss = {
-    filetypes = {
-        "html",
-        "css",
-        "scss",
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-    },
+	filetypes = {
+		"html",
+		"css",
+		"scss",
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact",
+	},
 }
 
 vim.lsp.config.lua_ls = {
-    filetypes = {
-        "lua",
-    },
+	filetypes = {
+		"lua",
+	},
 }
 
 vim.lsp.config.cssls = {
-    settings = {
-        css = {
-            validate = true,
-            lint = {
-                unknownAtRules = "ignore",
-            },
-        },
-    },
+	settings = {
+		css = {
+			validate = true,
+			lint = {
+				unknownAtRules = "ignore",
+			},
+		},
+	},
 }
 
 -- read :h vim.lsp.config for changing options of lsp servers
