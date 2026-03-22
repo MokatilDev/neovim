@@ -1,8 +1,6 @@
 local dap = require("dap")
 local dapui = require("dapui")
 
-dofile(vim.g.base46_cache .. "dap")
-
 dapui.setup()
 dap.listeners.after.event_initialized["dapui_config"] = function()
 	dapui.open()
@@ -16,4 +14,11 @@ end
 
 local adapters = { "codelldb", "go-debug-adapter", "cpptools", "delve", "local-lua-debugger-vscode", "debugpy" }
 local mason_dap = require("mason-nvim-dap")
-mason_dap.setup({ ensure_installed = adapters, handlers = {} })
+mason_dap.setup({
+	ensure_installed = adapters,
+	handlers = {
+		function(config)
+			require("mason-nvim-dap").default_setup(config)
+		end,
+	},
+})

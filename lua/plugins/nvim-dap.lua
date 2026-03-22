@@ -1,19 +1,12 @@
 return {
 	"mfussenegger/nvim-dap",
-	keys = {
-		{
-			"<leader>dt",
-			function()
-				require("dap").toggle_breakpoint()
-			end,
-			desc = "Dap toggle breakpoint",
-		},
-		{
-			"<leader>dc",
-			function()
-				require("dap").continue()
-			end,
-			desc = "Dap continue",
-		},
+	event = "VeryLazy",
+	dependencies = {
+		"rcarriga/nvim-dap-ui",
+		"nvim-neotest/nvim-nio",
+		"jay-babu/mason-nvim-dap.nvim",
 	},
+	config = function()
+		require("configs.dap")
+	end,
 }
