@@ -18,6 +18,7 @@ local options = {
 		"c",
 		"cpp",
 		"rust",
+		"sql",
 	},
 
 	highlight = {
@@ -28,9 +29,9 @@ local options = {
 
 	indent = { enable = true },
 
-	-- autotag = {
-	--     enable = true,
-	-- },
+	autotag = {
+		enable = true,
+	},
 }
 
 require("nvim-treesitter.configs").setup(options)
