@@ -16,6 +16,7 @@ local servers = {
 	"mdx_analyzer",
 	"pylsp",
 	"tinymist",
+	"arduino-language-server",
 }
 
 vim.lsp.enable(servers)
@@ -23,11 +24,6 @@ vim.lsp.enable(servers)
 vim.filetype.add({
 	extension = {
 		typ = "typst",
-	},
-})
-
-vim.filetype.add({
-	extension = {
 		mdx = "markdown",
 	},
 })
@@ -95,5 +91,34 @@ vim.lsp.config.cssls = {
 		},
 	},
 }
+
+vim.lsp.config("arduino_language_server", {
+	capabilities = {
+		textDocument = {
+			semanticTokens = vim.NIL,
+		},
+		workspace = {
+			semanticTokens = vim.NIL,
+		},
+	},
+
+	cmd = {
+		"arduino-language-server",
+		"-cli-config",
+		"path to your cli configs go here",
+		"-fqbn",
+		"arduino:avr:exampleText",
+		"-cli",
+		"arduino-cli",
+		"-clangd",
+		"clangd",
+	},
+
+	filetypes = { "arduino" },
+
+	root_dir = function(bufnr, on_dir)
+		on_dir(vim.fn.expand("%:p:h"))
+	end,
+})
 
 -- read :h vim.lsp.config for changing options of lsp servers
