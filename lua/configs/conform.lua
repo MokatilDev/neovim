@@ -10,9 +10,10 @@ local options = {
 		tex = { "tex-fmt" },
 		c = { "clang-format" },
 		cpp = { "clang-format" },
-		go = { "goimports", "gofumpt" },
+		go = { "goimports", "gofumpt", "gopls" },
 		rust = { "rustfmt" },
 		typst = { "typstyle", lsp_format = "prefer" },
+		sql = { "sqlfmt", "sql-formatter" },
 	},
 	format_on_save = {
 		timeout_ms = 500,
