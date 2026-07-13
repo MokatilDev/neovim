@@ -15,4 +15,6 @@ map("n", "<leader>dr", "<cmd>DapContinue<cr>", { desc = "DAP Continue/Start" })
 map("n", "<leader>di", "<cmd>DapStepInto<cr>", { desc = "DAP Step Into" })
 map("n", "<leader>do", "<cmd>DapStepOver<cr>", { desc = "DAP Step Over" })
 map("n", "<leader>dx", "<cmd>DapTerminate<cr>", { desc = "DAP Stop/Terminate" })
+
+map("n", "<leader>pe", "<cmd>:lua vim.diagnostic.setqflist()<cr>", { desc = "Show Project Errors" })
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
