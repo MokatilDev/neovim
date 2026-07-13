@@ -18,5 +18,12 @@ vim.filetype.add({
 vim.notify = require("notify")
 -- vim.opt.spell = true
 -- vim.opt.spelllang = "en_us"
+--
+vim.diagnostic.config({
+	virtual_text = {
+		source = "always",
+		multiline = true,
+	},
+})
 
 -- o.cursorlineopt ='both' -- to enable cursorline!
