@@ -4,6 +4,6 @@ return {
 	cmd = "DocsViewToggle",
 	opts = {
 		position = "right",
-		width = 90,
+		width = 60,
 	},
 }
