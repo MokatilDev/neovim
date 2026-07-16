@@ -18,12 +18,25 @@ vim.filetype.add({
 vim.notify = require("notify")
 -- vim.opt.spell = true
 -- vim.opt.spelllang = "en_us"
---
+
 vim.diagnostic.config({
+	source = true,
+
 	virtual_text = {
-		source = "always",
 		multiline = true,
+		prefix = "●",
+		spacing = 4,
 	},
+
+	severity_sort = true,
+
+	float = {
+		source = true,
+		border = "rounded",
+		focusable = false,
+	},
+
+	underline = true,
 })
 
--- o.cursorlineopt ='both' -- to enable cursorline!
+o.cursorlineopt = "both"
