@@ -1,45 +1,18 @@
 require("nvchad.configs.lspconfig").defaults()
 
-local servers = {
-	"lua_ls",
-	"biome",
-	"sqlls",
-	"sqls",
-	"html",
-	"texlab",
-	"emmet_ls",
-	"tailwindcss",
-	"gopls",
-	"clangd",
-	"ts_ls",
-	"prismals",
-	"mdx_analyzer",
-	"pylsp",
-	"tinymist",
-	"arduino-language-server",
-}
-
-vim.lsp.enable(servers)
-
 vim.filetype.add({
 	extension = {
 		typ = "typst",
-		mdx = "markdown",
+		mdx = "mdx",
 	},
 })
 
-vim.lsp.config.prismals = {
-	filetypes = {
-		"prisma",
-	},
-}
-
-vim.lsp.config.mdx_analyzer = {
-	filetypes = {
-		"md",
-		"mdx",
-	},
-}
+vim.lsp.config.json_lsp = { filetypes = { "json", "jsonc" } }
+vim.lsp.config.yaml_language_server = { filetypes = { "yaml" } }
+vim.lsp.config.prismals = { filetypes = { "prisma" } }
+vim.lsp.config.mdx_analyzer = { filetypes = { "md", "mdx" } }
+vim.lsp.config.lua_ls = { filetypes = { "lua" } }
+vim.lsp.config.docker_compose_language_service = { filetypes = { "yaml", "yaml.docker-compose", "dockercompose" } }
 
 vim.lsp.config.emmet_ls = {
 	filetypes = {
@@ -64,21 +37,7 @@ vim.lsp.config.emmet_ls = {
 }
 
 vim.lsp.config.tailwindcss = {
-	filetypes = {
-		"html",
-		"css",
-		"scss",
-		"javascript",
-		"javascriptreact",
-		"typescript",
-		"typescriptreact",
-	},
-}
-
-vim.lsp.config.lua_ls = {
-	filetypes = {
-		"lua",
-	},
+	filetypes = { "html", "css", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact" },
 }
 
 vim.lsp.config.cssls = {
@@ -92,22 +51,13 @@ vim.lsp.config.cssls = {
 	},
 }
 
-vim.lsp.config("arduino_language_server", {
-	capabilities = {
-		textDocument = {
-			semanticTokens = vim.NIL,
-		},
-		workspace = {
-			semanticTokens = vim.NIL,
-		},
-	},
-
+vim.lsp.config.arduino_language_server = {
 	cmd = {
 		"arduino-language-server",
 		"-cli-config",
-		"path to your cli configs go here",
+		vim.fn.expand("~/.arduino15/arduino-cli.yaml"),
 		"-fqbn",
-		"arduino:avr:exampleText",
+		"arduino:avr:uno",
 		"-cli",
 		"arduino-cli",
 		"-clangd",
@@ -115,10 +65,42 @@ vim.lsp.config("arduino_language_server", {
 	},
 
 	filetypes = { "arduino" },
-
-	root_dir = function(bufnr, on_dir)
+	root_dir = function(_, on_dir)
 		on_dir(vim.fn.expand("%:p:h"))
 	end,
+}
+
+local servers = {
+	"lua_ls",
+	"biome",
+	"sqls",
+	"html",
+	"texlab",
+	"emmet_ls",
+	"tailwindcss",
+	"gopls",
+	"clangd",
+	"ts_ls",
+	"prismals",
+	"mdx_analyzer",
+	"pylsp",
+	"tinymist",
+	"arduino_language_server",
+	"docker_compose_language_service",
+	"docker_language_server",
+	"yaml_language_server",
+	"json_lsp",
+	"cssls",
+}
+
+vim.lsp.config("*", {
+	capabilities = vim.tbl_deep_extend(
+		"force",
+		vim.lsp.protocol.make_client_capabilities(),
+		require("lsp-file-operations").default_capabilities()
+	),
 })
+
+vim.lsp.enable(servers)
 
 -- read :h vim.lsp.config for changing options of lsp servers
