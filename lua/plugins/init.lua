@@ -14,9 +14,9 @@ return {
 
 	{
 		"pcolladosoto/tinygo.nvim",
-		opts = {},
 		ft = { "go" },
 	},
+
 	"nvim-lua/plenary.nvim",
 
 	{
@@ -37,9 +37,9 @@ return {
 	{
 		"stevearc/conform.nvim",
 		event = "BufWritePre",
-    config = function ()
-      require("conform").setup(require("configs.conform"))
-    end
+		config = function()
+			require("conform").setup(require("configs.conform"))
+		end,
 	},
 
 	{
@@ -52,11 +52,25 @@ return {
 	{
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = {},
+		lazy = false,
+		config = function()
+			require("todo-comments").setup()
+		end,
+	},
+
+	{
+		"nvim-telescope/telescope.nvim",
+		version = "*",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		},
 	},
 
 	{
 		"nvim-telescope/telescope-media-files.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim" },
 	},
+
+	{ "folke/which-key.nvim", enabled = true },
 }
