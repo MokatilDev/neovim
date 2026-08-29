@@ -12,8 +12,8 @@ map("n", "ss", ":vsplit<Return>", opts)
 map("n", "sv", ":split<Return>", opts)
 
 map("n", "te", ":tabedit", opts)
-map("n", "<tab>", ":tabnext<Return>", opts)
-map("n", "<s-tab>", ":tabprev<Return>", opts)
+-- map("n", "<tab>", ":tabnext<Return>", opts)
+-- map("n", "<s-tab>", ":tabprev<Return>", opts)
 
 map("i", "jk", "<ESC>")
 

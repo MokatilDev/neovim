@@ -5,7 +5,7 @@ return {
 		opts = {
 			view = {
 				side = "left",
-				width = 30,
+				width = 35,
 			},
 			filters = {
 				dotfiles = true,

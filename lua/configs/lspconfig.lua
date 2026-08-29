@@ -1,5 +1,44 @@
 require("nvchad.configs.lspconfig").defaults()
 
+local servers = {
+	"lua_ls",
+	"biome",
+	"sqls",
+	"html",
+	"texlab",
+	"emmet_ls",
+	"tailwindcss",
+	"gopls",
+	"clangd",
+	"ts_ls",
+	"prismals",
+	"mdx_analyzer",
+	"pylsp",
+	"tinymist",
+	"arduino_language_server",
+	"docker_compose_language_service",
+	"docker_language_server",
+	"yaml_language_server",
+	"json_lsp",
+	"cssls",
+	"bash_language_server",
+	"eslint_lsp",
+}
+
+vim.lsp.enable(servers)
+vim.lsp.config("bash_language_server", {
+	filetypes = { "shell", "sh" },
+})
+
+vim.lsp.config("jsonls", {
+	cmd = { "vscode-json-language-server", "--stdio" },
+	filetypes = { "json", "jsonc" },
+	root_markers = { ".git" },
+	capabilities = vim.lsp.protocol.make_client_capabilities(),
+})
+
+vim.lsp.enable("jsonls")
+
 vim.filetype.add({
 	extension = {
 		typ = "typst",
@@ -13,6 +52,19 @@ vim.lsp.config.prismals = { filetypes = { "prisma" } }
 vim.lsp.config.mdx_analyzer = { filetypes = { "md", "mdx" } }
 vim.lsp.config.lua_ls = { filetypes = { "lua" } }
 vim.lsp.config.docker_compose_language_service = { filetypes = { "yaml", "yaml.docker-compose", "dockercompose" } }
+vim.lsp.config.eslint_lsp = {
+	filetypes = {
+		"css",
+		"html",
+		"javascript",
+		"typescript",
+		"javascriptreact",
+		"less",
+		"sass",
+		"scss",
+		"typescriptreact",
+	},
+}
 
 vim.lsp.config.emmet_ls = {
 	filetypes = {
@@ -70,29 +122,6 @@ vim.lsp.config.arduino_language_server = {
 	end,
 }
 
-local servers = {
-	"lua_ls",
-	"biome",
-	"sqls",
-	"html",
-	"texlab",
-	"emmet_ls",
-	"tailwindcss",
-	"gopls",
-	"clangd",
-	"ts_ls",
-	"prismals",
-	"mdx_analyzer",
-	"pylsp",
-	"tinymist",
-	"arduino_language_server",
-	"docker_compose_language_service",
-	"docker_language_server",
-	"yaml_language_server",
-	"json_lsp",
-	"cssls",
-}
-
 vim.lsp.config("*", {
 	capabilities = vim.tbl_deep_extend(
 		"force",
@@ -100,7 +129,5 @@ vim.lsp.config("*", {
 		require("lsp-file-operations").default_capabilities()
 	),
 })
-
-vim.lsp.enable(servers)
 
 -- read :h vim.lsp.config for changing options of lsp servers

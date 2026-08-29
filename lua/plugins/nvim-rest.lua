@@ -1,0 +1,22 @@
+return {
+	{
+		"rest-nvim/rest.nvim",
+		ft = "http",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		config = function()
+			require("rest-nvim").setup({
+				client = "curl",
+			})
+		end,
+	},
+	{
+		"nvim-treesitter/nvim-treesitter",
+		opts = function(_, opts)
+			opts.ensure_installed = opts.ensure_installed or {}
+			table.insert(opts.ensure_installed, "http")
+		end,
+	},
+}

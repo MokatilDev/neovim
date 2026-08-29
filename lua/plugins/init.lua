@@ -1,23 +1,9 @@
 return {
-	"nvzone/volt",
-
 	{
-		"dmmulroy/tsc.nvim",
-		cmd = { "TSC" },
-		config = true,
+		"stevearc/conform.nvim",
+		event = "BufWritePre",
+		opts = require("configs.conform"),
 	},
-
-	{
-		"dmmulroy/ts-error-translator.nvim",
-		config = true,
-	},
-
-	{
-		"pcolladosoto/tinygo.nvim",
-		ft = { "go" },
-	},
-
-	"nvim-lua/plenary.nvim",
 
 	{
 		"nvchad/ui",
@@ -35,18 +21,52 @@ return {
 	},
 
 	{
-		"stevearc/conform.nvim",
-		event = "BufWritePre",
-		config = function()
-			require("conform").setup(require("configs.conform"))
-		end,
-	},
-
-	{
 		"neovim/nvim-lspconfig",
 		config = function()
 			require("configs.lspconfig")
 		end,
+	},
+
+	{
+		"nvim-treesitter/nvim-treesitter",
+		opts = {
+			ensure_installed = {
+				"bash",
+				"fish",
+				"printf",
+				"toml",
+				"vim",
+				"vimdoc",
+				"yaml",
+				"lua",
+				"luadoc",
+				"markdown",
+				"markdown_inline",
+				"html",
+				"css",
+				"scss",
+				"javascript",
+				"typescript",
+				"tsx",
+				"jsdoc",
+				"go",
+				"gomod",
+				"gosum",
+				"gowork",
+				"sql",
+				"prisma",
+				"c",
+				"cpp",
+				"rust",
+				"arduino",
+				"dockerfile",
+				"json",
+				"jsonc",
+				"python",
+				"latex",
+				"typst",
+			},
+		},
 	},
 
 	{
@@ -57,20 +77,4 @@ return {
 			require("todo-comments").setup()
 		end,
 	},
-
-	{
-		"nvim-telescope/telescope.nvim",
-		version = "*",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-		},
-	},
-
-	{
-		"nvim-telescope/telescope-media-files.nvim",
-		dependencies = { "nvim-telescope/telescope.nvim" },
-	},
-
-	{ "folke/which-key.nvim", enabled = true },
 }
